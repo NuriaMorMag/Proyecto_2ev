@@ -65,8 +65,10 @@ if (isset($_SESSION['user'])) {
         $title    = $_POST['title'] === '' ? NULL : $_POST['title']; //Si no se escribe nada: NULL
         $alt = $_POST['alt'];
         $category = $_POST['category'];
-        $category = $_POST['date'] === '' ? NULL : $_POST['date'];
+        $date = $_POST['date'] === '' ? NULL : $_POST['date'];
         $commentary = $_POST['commentary'] === '' ? NULL : $_POST['commentary'];
+
+        $is_blog = 0;
 
         // Upload real image  
         if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) { 
@@ -114,25 +116,32 @@ if (isset($_SESSION['user'])) {
         exit();
     }
 
-    // UPDATE IMAGE
+   // UPDATE IMAGE
     if (isset($_REQUEST['order']) && $_REQUEST['order'] === 'updateImage') {
 
         if (!userCanManageImages()) {
             die("You don't have permission to update images.");
         }
 
-        $id = $_POST['id'] ?? NULL;
+        $id = $_POST['id'] ?? NULL; 
+        if (!$id) { 
+            die("Invalid image ID."); 
+        }
+
         $title = $_POST['title'] === '' ? NULL : $_POST['title'];
         $alt = $_POST['alt'] ?? '';
         $category = $_POST['category'] ?? '';
+        $date = $_POST['date'] === '' ? NULL : $_POST['date'];
         $commentary = $_POST['commentary'] === '' ? NULL : $_POST['commentary'];
+
+        $is_blog = 0;
 
         $bd->updateImage($id, $title, $alt, $category, $date, $commentary, $is_blog);
 
         header('Location: index.php?page=gallery');
         exit();
     }
-
+    
     // DELETE IMAGE
     if (isset($_REQUEST['order']) && $_REQUEST['order'] === 'deleteImage') {
 
@@ -316,5 +325,6 @@ include "app/layouts/header.php";
 include "app/layouts/login.php";
 include "app/layouts/footer.php";
 exit();
+
 
 
