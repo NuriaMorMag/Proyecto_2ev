@@ -46,6 +46,11 @@
     </select>
     <br><br>
 
+    <!-- DATE -->
+    <label for="date">Date:</label><br>
+    <textarea name="date" id="date" rows="1" cols="40" placeholder="January 25, 2026"><?= htmlspecialchars($image->date) ?></textarea>
+    <br><br>
+
     <!-- COMMENTARY -->
     <label for="commentary">Commentary:</label><br>
     <textarea
@@ -61,4 +66,5 @@
 <br>
 
 <a href="index.php?page=gallery">Go back to gallery</a>
+
 </div>
