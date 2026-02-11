@@ -60,6 +60,11 @@
         cols="40"><?= htmlspecialchars($image->commentary) ?></textarea>
     <br><br>
 
+    <!-- BLOG -->
+     <label for="is_blog">Show in blog?</label><br> 
+     <input type="checkbox" name="is_blog" id="is_blog" value="1" <?= $image->is_blog ? 'checked' : '' ?> > 
+     <br><br>
+
     <button type="submit">Update image</button>
 </form>
 
@@ -68,3 +73,4 @@
 <a href="index.php?page=gallery">Go back to gallery</a>
 
 </div>
+
