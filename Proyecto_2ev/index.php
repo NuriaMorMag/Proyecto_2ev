@@ -68,7 +68,7 @@ if (isset($_SESSION['user'])) {
         $date = $_POST['date'] === '' ? NULL : $_POST['date'];
         $commentary = $_POST['commentary'] === '' ? NULL : $_POST['commentary'];
 
-        $is_blog = 0;
+        $is_blog = isset($_POST['is_blog']) ? 1 : 0;
 
         // Upload real image  
         if (!isset($_FILES['image']) || $_FILES['image']['error'] !== UPLOAD_ERR_OK) { 
@@ -134,7 +134,7 @@ if (isset($_SESSION['user'])) {
         $date = $_POST['date'] === '' ? NULL : $_POST['date'];
         $commentary = $_POST['commentary'] === '' ? NULL : $_POST['commentary'];
 
-        $is_blog = 0;
+        $is_blog = isset($_POST['is_blog']) ? 1 : 0;
 
         $bd->updateImage($id, $title, $alt, $category, $date, $commentary, $is_blog);
 
@@ -325,6 +325,7 @@ include "app/layouts/header.php";
 include "app/layouts/login.php";
 include "app/layouts/footer.php";
 exit();
+
 
 
 
